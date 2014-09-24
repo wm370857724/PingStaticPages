@@ -1,0 +1,32 @@
+/*color*/
+$colorWhite:        hsl(0, 0, 100%);
+$colorSilver:       hsl(0, 0, 92%);
+$colorGray:         hsl(0, 0, 75%);
+$colorCarbon:       hsl(0, 0, 40%);
+$colorBlack:        hsl(0, 0, 0);
+
+$colorGreen:        hsl(167, 84%, 85);  // old hsl(153, 100%, 50%);
+$colorBlue:         #00A2FF;            // old hsl(207, 100%, 50%);
+$colorYellow:       hsl(52, 100%, 50%);
+$colorRed:          hsl(17, 100%, 50%);
+
+$colorGreenLite:    lighten($colorGreen, 10%);
+$colorBlueLite:     lighten($colorBlue, 10%);
+$colorYellowLite:   lighten($colorYellow, 10%);
+$colorRedLite:      lighten($colorRed, 10%);
+
+// darken
+$colorGreenDark:    darken($colorGreen, 25%);
+$colorBlueDark:     darken($colorBlue, 10%);
+$colorYellowDark:   darken($colorYellow, 10%);
+$colorRedDark:      darken($colorRed, 10%);
+
+// shadow
+$shadow:            fade($colorBlack, 25%);
+
+// border
+$borderColor:       $colorSilver;
+$borderColorDark:   $colorCarbon;
+
+// backgroundColor
+$backgroundGray:	$colorGray;

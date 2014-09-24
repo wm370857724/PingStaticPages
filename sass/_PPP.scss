@@ -1,0 +1,33 @@
+/*Minins*/
+
+@import "color";
+@import "common"; 
+@import "grid";
+@import "button";
+
+
+.wrapper {
+  @include wrapper();
+  @media (min-width: $screenPad) {
+    width: $padWrapperWidth;
+  }
+  @media (min-width: $screenPC) {
+    width: $pcWrapperWidth;
+  }
+}
+
+.row{
+  @include make-row();
+}
+@include gridAttrPublic();
+
+@include make-mobi-grid();
+@media screen and (min-width: $screenPad){
+    @include make-pad-grid();
+}
+@media screen and (min-width: $screenPC){
+    @include make-pc-grid();
+}
+
+
+@import "main";

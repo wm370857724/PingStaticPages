@@ -1,0 +1,137 @@
+// Button variants
+
+@mixin button-variant($color, $background, $border) {
+  color: $color;
+  background-color: $background;
+  border-color: $border;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active {
+    color: $color;
+    background-color: darken($background, 10%);
+        border-color: darken($border, 12%);
+  }
+  &:active,
+  &.active {
+    background-image: none;
+  }
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &,
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      background-color: $background;
+          border-color: $border;
+    }
+  }
+}
+
+// Button sizes
+@mixin button-size($padding-vertical, $padding-horizontal, $font-size, $line-height, $border-radius) {
+  padding: $padding-vertical $padding-horizontal;
+  font-size: $font-size;
+  line-height: $line-height;
+  border-radius: $border-radius;
+}
+
+
+
+
+//
+// Buttons
+// --------------------------------------------------
+
+
+// Base styles
+// --------------------------------------------------
+
+.btn {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+  border: 2px solid transparent;
+  white-space: nowrap;
+  @include button-size($buttonPaddingVertical, $buttonPaddingHorizontal, $fontM, $lineHeightS, $buttonRadius);
+  @include user-select(none);
+
+  
+
+  &:hover,
+  &:focus {
+    color: $btnBlackColor;
+    text-decoration: none;
+  }
+
+  &:active,
+  &.active {
+    outline: 0;
+    background-image: none;
+    @include box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+  }
+
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    cursor: not-allowed;
+    pointer-events: none; // Future-proof disabling of clicks
+    @include opacity(.65);
+    @include box-shadow(none);
+  }
+}
+
+
+// Alternate buttons
+// --------------------------------------------------
+
+.btnWhite {
+  @include button-variant($btnWhiteColor, $btnWhiteBackground, $btnWhiteBorderColor);
+}
+
+.btnBlack {
+  @include button-variant($btnBlackColor, $btnBlackBackground, $btnBlackBorderColor);
+}
+
+
+// Button Sizes
+// --------------------------------------------------
+
+.btnL {
+  // line-height: ensure even-numbered height of button next to large input
+  @include button-size($buttonPaddingVerticalL, $buttonPaddingHorizontalL, $fontL, $lineHeightL, $buttonRadiusL);
+}
+.btnS {
+  // line-height: ensure proper height of button next to small input
+  @include button-size($buttonPaddingVerticalS, $buttonPaddingHorizontalS, $fontS, $lineHeightS, $buttonRadiusS);
+}
+
+
+// Block button
+// --------------------------------------------------
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+// Vertically space out multiple block buttons
+.btn-block + .btn-block {
+  margin-top: 5px;
+}
+
+// Specificity overrides
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  &.btn-block {
+    width: 100%;
+  }
+}

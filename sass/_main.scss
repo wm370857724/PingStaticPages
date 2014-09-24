@@ -1,0 +1,395 @@
+ /**********
+ ** Reset **
+ **********/
+* {
+    &,
+    &:before,
+    &:after {
+        @include box-sizing();
+    }
+}
+
+/* 让非ie浏览器默认也显示垂直滚动条，防止因滚动条引起的闪烁 */
+html { overflow-y: scroll; }
+body{
+    color: $colorCarbon;
+    background-color: $colorWhite;
+    font-weight: 100;
+    -webkit-font-smoothing: antialiased;
+    background-origin: border-box;
+    @include box-sizing();
+}
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, /* structural elements 结构元素 */
+dl, dt, dd, ul, ol, li, /* list elements 列表元素 */
+pre, /* text formatting elements 文本格式元素 */
+fieldset, lengend, button, input, textarea, /* form elements 表单元素 */
+th, td { /* table elements 表格元素 */
+    margin: 0;
+    padding: 0;
+}
+/* 设置默认字体 */
+body,
+button, input, select, textarea { /* for ie */
+    font: #{$fontM}/2 AvenirNext-Regular,
+        'proxima-nova',
+        'Hiragino Sans GB',
+        'Microsoft YaHei',
+        'WenQuanYi Micro Hei',
+        'Open Sans',
+        'Helvetica Neue',
+        Arial,sans-serif;
+}
+h1 { font-size: $fontXL; }
+h2 { font-size: $fontL; }
+h3 { font-size: $fontM; }
+h4, h5, h6 { font-size: 100%; }
+address, cite, dfn, em, var { font-style: normal; } /* 将斜体扶正 */
+code, kbd, pre, samp, tt { font-family: "Courier New", Courier, monospace; } /* 统一等宽字体 */
+small { font-size: 12px; } /* 小于 12px 的中文很难阅读，让 small 正常化 */
+ul, ol { list-style: none; }/* 重置列表元素 */
+abbr[title], acronym[title] { /* 注：1.ie6 不支持 abbr; 2.这里用了属性选择符，ie6 下无效果 */
+    border-bottom: 1px dotted;
+    cursor: help;
+}
+q:before, q:after { content: ''; }
+/* 重置表单元素 */
+legend { color: #000; } /* for ie6 */
+button, input, select, textarea {
+    font-size: 100%; /* 使得表单元素在 ie 下能继承字体大小 */
+}
+/* 重置表格元素 */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+/* 重置 hr */
+hr {
+    border: none;
+    height: 1px;
+}
+p{
+    padding: $spaceM 0;
+}
+img {
+    vertical-align: middle;
+    max-width: 100% !important;
+    border: 0;
+    page-break-inside: avoid;
+}
+a {
+    background: transparent;
+    text-decoration: none;
+    color: $colorCarbon;
+}
+
+ /***********
+ ** Public **
+ ***********/
+
+
+@media (max-width: $screenMobi) {
+    .mobihide{display: none;}
+}
+/* Navbar */
+.nav{
+    padding-top: $spaceL;
+    padding-bottom: $spaceL;
+    position: relative;
+    border: 1px solid $colorCarbon;
+    .nav_bar{
+        .logo{
+            display: inline-block;
+            vertical-align: middle;
+            width: 104px;
+            height: 14px;
+            text-indent: -9999px;
+            background: url("../images/logo.svg") 0 0 no-repeat,
+                        url("../images/logo.png") 0 1px no-repeat;
+        }
+        .nav_btn{
+            float: right;
+            position: relative;
+            line-height: 2;
+            cursor: pointer;
+            .mobihide{
+                padding-right: 20px;
+            }
+            .nav_btn_mid{
+                &,
+                &:before,
+                &:after{
+                    content: " ";
+                    display: block;
+                    position: absolute;
+                    top: 8px;
+                    right: 0;
+                    width: 10px;
+                    height: 0;
+                    border-top: 2px solid $colorCarbon;
+                }
+                &:before{
+                    top: 2px;
+                }
+                &:after{
+                    top: 6px;
+                }
+            }
+        }
+    }
+    .nav_menu{
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        .nav_menu_ul{
+            text-align: right;
+            li{
+                display: inline-block;
+                a{
+                    display: inline-block;
+                    padding-left: $spaceS;
+                    padding-right: $spaceS;
+                }
+            }
+        }
+    }
+}
+
+
+ /**********
+ ** Index **
+ **********/
+%indexDarkBG{
+    background-color: $colorSilver;
+}
+.indexBanner{
+    height: 600px;
+    height: 1vh;
+    padding-top: 0;
+    text-align: center;
+    position: relative;
+    .logo{
+        margin-top: -50px;
+        top: 50%;
+        height: 50px;
+        position: relative;
+    }
+}
+.indexPlatform{
+    @extend %indexDarkBG;
+    padding: $spaceXL*2 0;
+    .pc6{
+        margin-top: $spaceL;
+        margin-bottom: $spaceM;
+    }
+    .platformImg{
+        height: 124px;
+        background: url("../images/devices/devices.png") no-repeat $gridSpacing/2;
+        @include image-2x("../images/devices/devices@2x.png", 222px, 124px);
+    }
+    .channelImg{
+        text-align: center;
+        @media screen and (min-width: $screenPC){
+            &{float: right;}
+        }
+        svg{
+            margin-left: 20px;
+            margin-right: 20px;
+            path{fill: $colorSilver;}
+        }
+    }
+}
+.indexAdvantage{
+    padding-top: $spaceXL * 2;
+    padding-bottom: $spaceXL * 2;
+    @media screen and (min-width: $screenPC){
+        &{padding-left: 6%;}
+    }
+    .safe h4{
+        padding-top: 70px;
+        background: url("../images/icon/icon-safe.svg") #fff 0 0 no-repeat;
+    }
+    .static h4{
+        padding-top: 70px;
+        background: url("../images/icon/icon-static.svg") #fff 0 0 no-repeat;
+    }
+
+}
+.indexDashboard{
+    padding-top: $spaceXL*5;
+    padding-bottom: $spaceXL*5;
+    color: $colorWhite;
+    background:#ebebeb url("../images/iPad/iPad-horizontal.png") center center no-repeat;
+    @include image-2x("../images/iPad/iPad-horizontal@2x.png", 646px, 392px);
+    .boardContent{
+        width: 300px;
+        margin: 0 auto;
+    }
+    .btn{background-color: transparent;}
+}
+@keyframes cursorFlicker{
+    0%  {@include opacity(1)}
+    50% {@include opacity(1)}
+    100%{@include opacity(0)}
+}
+@-webkit-keyframes cursorFlicker{
+    0%  {@include opacity(1)}
+    50% {@include opacity(1)}
+    100%{@include opacity(0)}
+}
+.indexDemo{
+    background-color: #272822;
+    pre{
+        width: 400px;
+        padding-top: $spaceXL * 4;
+        padding-bottom: $spaceXL * 4;
+        margin-left: auto;
+        margin-right: auto;
+        code{
+            display: block;
+        }
+        a{
+            color: $colorWhite;
+            text-decoration: underline;
+        }
+    }
+    .flickerCursor{
+        color: $colorRed;
+        font-weight: bolder;
+        animation: cursorFlicker 1s infinite;
+        -webkit-animation: cursorFlicker 1s infinite;
+    }
+}
+.indexApplication{
+    padding-top: $spaceXL * 4;
+    padding-bottom: $spaceXL * 4;
+    svg{
+        overflow: visible;
+    }
+}
+.indexReports{
+    @extend %indexDarkBG;
+    padding-top: $spaceXL*1.6;
+    padding-bottom: $spaceXL*1.5;
+    a{
+        display: block;
+        height: 35px;
+        text-indent: -9999px;
+        background-position: center center;
+        background-repeat: no-repeat;
+        -webkit-transform: translateZ(0);
+        -webkit-transition: 0.2s ease-out;
+        -moz-transition: 0.2s ease-out;
+        -ms-transition: 0.2s ease-out;
+        -o-transition: 0.2s ease-out;
+        -webkit-filter: grayscale(100%) brightness(70%) contrast(0%);
+        -moz-filter: grayscale(100%) brightness(70%) contrast(0%);
+        -ms-filter: grayscale(100%) brightness(70%) contrast(0%);
+        -o-filter: grayscale(100%) brightness(70%) contrast(0%);
+        filter: grayscale(100%) brightness(70%) contrast(0%);
+        &:hover{
+            -webkit-transform: translateZ(0);
+            -webkit-filter: grayscale(0%) brightness(100%) contrast(100%);
+            -moz-filter: grayscale(0%) brightness(100%) contrast(100%);
+            -ms-filter: grayscale(0%) brightness(100%) contrast(100%);
+            -o-filter: grayscale(0%) brightness(100%) contrast(100%);
+            filter: grayscale(0%) brightness(100%) contrast(100%);
+        }
+    }
+    .kr36{
+        background-image: url("../images/reports/logo-kr.png");
+        @include image-2x("../images/reports/logo-kr@2x.png", 55px, 31px);
+    }
+    .nsb{
+        background-image: url("../images/reports/logo-nsb.png");
+        @include image-2x("../images/reports/logo-nsb@2x.png", 96px, 21px);
+    }
+    .pingwest{
+        background-image: url("../images/reports/logo-pw.png");
+        @include image-2x("../images/reports/logo-pw@2x.png", 100px, 18px);
+    }
+    .technode{
+        background-image: url("../images/reports/logo-tn.png");
+        @include image-2x("../images/reports/logo-tn@2x.png", 100px, 16px);
+    }
+}
+.indexCost{
+    padding-top: $spaceXL * 2;
+    padding-bottom: $spaceXL * 2;
+    text-align: center;
+    em{
+        font-size: $fontXL;
+    }
+    .btn{
+        margin-top: $spaceL;
+        border-color: $colorCarbon;
+    }
+}
+.indexFooter{
+    padding-top: $spaceXL * 2;
+    padding-bottom: $spaceXL * 2;
+    background-color: $colorBlack;
+    color: $colorSilver;
+    small{
+        display: block;
+        color: $colorGray;
+        a{
+            color: $colorGray;
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width: $screenPC){
+    .indexPlatform{
+        .platformImg{
+            background-position: center;
+        }
+        .channelImg svg{
+            margin-left: 10px;
+            margin: 10px;
+        }
+        .pc6 h4{text-align: center;}
+    }
+    .indexAdvantage{
+        h4{
+            background-position: center 0 !important;
+            text-align: center;
+        }
+    }
+    .indexDashboard{
+        text-align: center;
+        background-image: url("../images/iPad/iPad-vertical.png");
+        @include image-2x("../images/iPad/iPad-vertical@2x.png", 392px, 646px);
+        p{text-align: left;}
+    }
+    .indexApplication{
+        text-align: center;
+        .applicationContent p{text-align: left;}
+        svg{padding: 0;}
+    }
+    .indexFooter{
+        text-align: center;
+        padding-top: $spaceL;
+        padding-bottom: $spaceL;
+    }
+}
+@media screen and (max-width: $screenPad){
+    .indexDashboard{
+        padding-top: $spaceXL*3;
+        padding-bottom: $spaceXL*3;
+    }
+    .indexDemo{
+        pre{
+            width: 100%;
+            max-width: 400px;
+            padding-top: $spaceXL*2;
+            padding-bottom: $spaceXL*2;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            a{display: inline-block;}
+        }
+    }
+}

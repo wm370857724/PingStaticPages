@@ -1,0 +1,83 @@
+/*Grid System*/
+//----------------------
+
+@mixin wrapper() {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left:  ($gridSpacing / 2);
+  padding-right: ($gridSpacing / 2);
+  @include clearfix();
+}
+
+// Creates a wrapper for a series of columns
+@mixin make-row() {
+  margin-left:  ($gridSpacing / -2);
+  margin-right: ($gridSpacing / -2);
+  @include clearfix();
+}
+
+%gridAttrPublic {
+	position: relative;
+    min-height: 1px;
+    padding-left:  $gridSpacing / 2;
+    padding-right: $gridSpacing / 2;
+}
+@mixin gridAttrPublic(){
+	@for $i from 1 through $gridColumnsMobi {
+		.mobi#{$i}{
+			@extend %gridAttrPublic;
+		}
+	}
+	@for $i from 1 through $gridColumnsPad {
+		.pad#{$i}{
+			@extend %gridAttrPublic;
+		} 
+	}
+	@for $i from 1 through $gridColumnsPC {
+		.pc#{$i}{
+			@extend %gridAttrPublic;
+		} 
+	}
+}
+
+@mixin make-pc-grid (){
+	%flpc{float: left;}
+	@for $i from 1 through $gridColumnsPC {
+		.pc#{$i}{
+			@extend %flpc;
+		    width: 100% / $gridColumnsPC * $i;
+		}
+		.pcml#{$i}{
+			margin-left: 100% / $gridColumnsPC * $i;
+		}
+	}
+}
+@mixin make-pad-grid (){
+	%flpad{float: left;}
+	@for $i from 1 through $gridColumnsPad {
+		.pad#{$i}{
+			@extend %flpad;
+		    width: 100% / $gridColumnsPad * $i;
+		}
+		.padml#{$i}{
+			margin-left: 100% / $gridColumnsPad * $i;
+		}
+	}
+}
+@mixin make-mobi-grid (){
+	%flmobi{float: left;}
+	@for $i from 1 through $gridColumnsMobi {
+		.mobi#{$i}{
+			@extend %flmobi;
+		    width: 100% / $gridColumnsMobi * $i;
+		}
+		.mobiml#{$i}{
+			margin-left: 100% / $gridColumnsMobi * $i;
+		}
+	}
+}
+
+
+
+
+

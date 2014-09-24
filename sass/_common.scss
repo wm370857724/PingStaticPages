@@ -1,0 +1,120 @@
+/* spacing */
+// base
+$spaceBase:     	56px;
+$spaceRatio:    	2;
+// size
+$spaceXL:       	$spaceBase;
+$spaceL:        	$spaceXL / $spaceRatio;
+$spaceM:        	$spaceL / $spaceRatio;
+$spaceS:        	$spaceM / $spaceRatio;
+
+/* fontsize */
+$fontS:         	10px;
+$fontM:         	14px;
+$fontL:         	24px;
+$fontXL:        	36px;
+
+/*lineHeight*/
+$lineHeightBase:  2;
+$lineHeightL: 2.4;
+$lineHeightS: 1.5;
+
+/*agentWidth*/
+$screenMobi:		  479px;
+$screenPad:			  767px;
+$screenPC:        991px;
+$screenMax:			  1440px;
+/*wrapperWidth*/
+$padWrapperWidth: 750px;
+$pcWrapperWidth:  720px;
+
+/*Grid System*/
+$gridColumnsPC:		12;
+$gridColumnsPad:	6;
+$gridColumnsMobi:	1;
+$gridSpacing:     30px;
+
+/*button*/
+$buttonRadius:            4px;
+$buttonRadiusL:           6px;
+$buttonRadiusS:           2px;
+$buttonPaddingVertical:   4px;
+$buttonPaddingVerticalL:  6px;
+$buttonPaddingVerticalS:  2px;
+$buttonPaddingHorizontal: 16px;
+$buttonPaddingHorizontalL:24px;
+$buttonPaddingHorizontalS:10px;
+
+$btnWhiteColor:           $colorCarbon;
+$btnWhiteBackground:      $colorWhite;
+$btnWhiteBorderColor:     $colorCarbon;
+
+$btnBlackColor:           $colorWhite;
+$btnBlackBackground:      $colorCarbon;
+$btnBlackBorderColor:     $colorWhite;
+
+
+
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+ 
+@mixin css3($property, $value) {
+    @each $prefix in -webkit-, -moz-, -ms-, -o-, '' {
+        #{$prefix}#{$property}: $value;
+    }
+}
+// .border_radius {
+//   @include css3(transition, 0.5s);
+// }
+@mixin image-2x($image, $width, $height) {
+  @media (-moz-min-device-pixel-ratio: 1.3),
+         (-o-min-device-pixel-ratio: 2.6/2),
+         (-webkit-min-device-pixel-ratio: 1.3),
+         (min-device-pixel-ratio: 1.3),
+         (min-resolution: 1.3dppx) {
+            /* on retina, use image that's scaled by 2 */
+            background-image: url($image);
+            background-size: $width $height;
+  }
+}
+// div.logo {
+//   background: url("logo.png") no-repeat;
+//   @include image-2x("logo2x.png", 100px, 25px);
+// }
+
+@mixin box-shadow($shadow...) {
+  -webkit-box-shadow: $shadow; // iOS <4.3 & Android <4.1
+          box-shadow: $shadow;
+}
+
+@mixin box-sizing($boxmodel:border-box) {
+  -webkit-box-sizing: $boxmodel;
+     -moz-box-sizing: $boxmodel;
+          box-sizing: $boxmodel;
+}
+
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}
+// .article-heading {
+//   @include opacity(0.8);
+// }
+
+// User select
+// For selecting text on the page
+@mixin user-select($select) {
+  -webkit-user-select: $select;
+     -moz-user-select: $select;
+      -ms-user-select: $select; // IE10+
+          user-select: $select;
+}
