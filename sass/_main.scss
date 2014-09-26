@@ -92,10 +92,10 @@ a {
 }
 /* Navbar */
 .nav{
-    padding-top: $spaceL;
-    padding-bottom: $spaceL;
+    padding-top: $spaceXL;
+    padding-bottom: $spaceXL;
     position: relative;
-    border: 1px solid $colorCarbon;
+    border-bottom: 1px solid $colorGray;
     .nav_bar{
         .logo{
             display: inline-block;
@@ -112,7 +112,8 @@ a {
             line-height: 2;
             cursor: pointer;
             .mobihide{
-                padding-right: 20px;
+                vertical-align: middle;
+                padding-right: 30px;
             }
             .nav_btn_mid{
                 &,
@@ -121,11 +122,16 @@ a {
                     content: " ";
                     display: block;
                     position: absolute;
-                    top: 8px;
+                    top: 9px;
                     right: 0;
-                    width: 10px;
+                    width: 14px;
                     height: 0;
                     border-top: 2px solid $colorCarbon;
+                    transition: transform 0.25s 0.2s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+                    -webkit-transition: transform 0.25s 0.2s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+                    -moz-transition: 0.2s ease-out;
+                    -ms-transition: 0.2s ease-out;
+                    -o-transition: 0.2s ease-out;
                 }
                 &:before{
                     top: 2px;
@@ -140,6 +146,7 @@ a {
         width: 100%;
         position: absolute;
         bottom: 0;
+        display: none;
         .nav_menu_ul{
             text-align: right;
             li{
@@ -149,6 +156,45 @@ a {
                     padding-left: $spaceS;
                     padding-right: $spaceS;
                 }
+            }
+        }
+    }
+    &.open{
+        .nav_bar{
+            .nav_btn{
+                .nav_btn_mid{
+                    background-color: #f00;
+                    transform: translateZ(0) rotate(45deg);
+                    transform-origin: 0 0;
+                    &:before{border-width: 0;}
+                    &:after{
+                        transform: translateZ(0) rotate(-90deg);
+                        transform-origin: 0 2px;
+                    }
+                }//旋转为关闭叉号
+            }
+        }
+    }
+}
+@media screen and (max-width: $screenPad){
+    .nav{
+        overflow: hidden;
+        padding-top: $spaceL;
+        padding-bottom: $spaceL;
+        transition: padding-bottom .25s;
+        &.open{padding-bottom: $spaceXL;}
+        .nav_bar{
+            .logo{
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+        .nav_menu{
+            overflow: scroll;
+            white-space: nowrap;
+            bottom: -10px;
+            .nav_menu_ul{
+                padding-bottom: 10px;
             }
         }
     }
@@ -164,13 +210,14 @@ a {
 .indexBanner{
     height: 600px;
     height: 1vh;
-    padding-top: 0;
+    padding-top: $spaceM;
+    margin-bottom: $spaceM;
     text-align: center;
     position: relative;
-    .logo{
+    .banerContent{
+        height: 100px;
         margin-top: -50px;
         top: 50%;
-        height: 50px;
         position: relative;
     }
 }
@@ -194,7 +241,6 @@ a {
         svg{
             margin-left: 20px;
             margin-right: 20px;
-            path{fill: $colorSilver;}
         }
     }
 }
@@ -236,6 +282,16 @@ a {
     50% {@include opacity(1)}
     100%{@include opacity(0)}
 }
+@-o-keyframes cursorFlicker{
+    0%  {@include opacity(1)}
+    50% {@include opacity(1)}
+    100%{@include opacity(0)}
+}
+@-moz-keyframes cursorFlicker{
+    0%  {@include opacity(1)}
+    50% {@include opacity(1)}
+    100%{@include opacity(0)}
+}
 .indexDemo{
     background-color: #272822;
     pre{
@@ -257,6 +313,11 @@ a {
         font-weight: bolder;
         animation: cursorFlicker 1s infinite;
         -webkit-animation: cursorFlicker 1s infinite;
+        -o-animation: cursorFlicker 1s infinite;
+        -moz-animation: cursorFlicker 1s infinite;
+        &:after{
+            content:"|";
+        }
     }
 }
 .indexApplication{

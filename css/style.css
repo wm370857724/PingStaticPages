@@ -459,10 +459,10 @@ a {
 }
 /* Navbar */
 .nav {
-  padding-top: 28px;
-  padding-bottom: 28px;
+  padding-top: 56px;
+  padding-bottom: 56px;
   position: relative;
-  border: 1px solid #000;
+  border-bottom: 1px solid #bfbfbf;
 }
 .nav .nav_bar .logo {
   display: inline-block;
@@ -479,17 +479,23 @@ a {
   cursor: pointer;
 }
 .nav .nav_bar .nav_btn .mobihide {
-  padding-right: 20px;
+  vertical-align: middle;
+  padding-right: 30px;
 }
 .nav .nav_bar .nav_btn .nav_btn_mid, .nav .nav_bar .nav_btn .nav_btn_mid:before, .nav .nav_bar .nav_btn .nav_btn_mid:after {
   content: " ";
   display: block;
   position: absolute;
-  top: 8px;
+  top: 9px;
   right: 0;
-  width: 10px;
+  width: 14px;
   height: 0;
   border-top: 2px solid #666666;
+  transition: transform 0.25s 0.2s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+  -webkit-transition: transform 0.25s 0.2s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+  -moz-transition: 0.2s ease-out;
+  -ms-transition: 0.2s ease-out;
+  -o-transition: 0.2s ease-out;
 }
 .nav .nav_bar .nav_btn .nav_btn_mid:before {
   top: 2px;
@@ -501,6 +507,7 @@ a {
   width: 100%;
   position: absolute;
   bottom: 0;
+  display: none;
 }
 .nav .nav_menu .nav_menu_ul {
   text-align: right;
@@ -513,7 +520,42 @@ a {
   padding-left: 7px;
   padding-right: 7px;
 }
+.nav.open .nav_bar .nav_btn .nav_btn_mid {
+  background-color: #f00;
+  transform: translateZ(0) rotate(45deg);
+  transform-origin: 0 0;
+}
+.nav.open .nav_bar .nav_btn .nav_btn_mid:before {
+  border-width: 0;
+}
+.nav.open .nav_bar .nav_btn .nav_btn_mid:after {
+  transform: translateZ(0) rotate(-90deg);
+  transform-origin: 0 2px;
+}
 
+@media screen and (max-width: 767px) {
+  .nav {
+    overflow: hidden;
+    padding-top: 28px;
+    padding-bottom: 28px;
+    transition: padding-bottom .25s;
+  }
+  .nav.open {
+    padding-bottom: 56px;
+  }
+  .nav .nav_bar .logo {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .nav .nav_menu {
+    overflow: scroll;
+    white-space: nowrap;
+    bottom: -10px;
+  }
+  .nav .nav_menu .nav_menu_ul {
+    padding-bottom: 10px;
+  }
+}
 /**********
 ** Index **
 **********/
@@ -524,15 +566,15 @@ a {
 .indexBanner {
   height: 600px;
   height: 1vh;
-  padding-top: 0;
+  padding-top: 14px;
+  margin-bottom: 14px;
   text-align: center;
   position: relative;
-  border: 1px solid #0f0;
 }
-.indexBanner .logo {
+.indexBanner .banerContent {
+  height: 100px;
   margin-top: -50px;
   top: 50%;
-  height: 50px;
   position: relative;
 }
 
@@ -565,9 +607,6 @@ a {
 .indexPlatform .channelImg svg {
   margin-left: 20px;
   margin-right: 20px;
-}
-.indexPlatform .channelImg svg path {
-  fill: #ebebeb;
 }
 
 .indexAdvantage {
@@ -637,6 +676,34 @@ a {
     filter: alpha(opacity=0);
   }
 }
+@-o-keyframes cursorFlicker {
+  0% {
+    opacity: 1;
+    filter: alpha(opacity=100);
+  }
+  50% {
+    opacity: 1;
+    filter: alpha(opacity=100);
+  }
+  100% {
+    opacity: 0;
+    filter: alpha(opacity=0);
+  }
+}
+@-moz-keyframes cursorFlicker {
+  0% {
+    opacity: 1;
+    filter: alpha(opacity=100);
+  }
+  50% {
+    opacity: 1;
+    filter: alpha(opacity=100);
+  }
+  100% {
+    opacity: 0;
+    filter: alpha(opacity=0);
+  }
+}
 .indexDemo {
   background-color: #272822;
 }
@@ -659,6 +726,11 @@ a {
   font-weight: bolder;
   animation: cursorFlicker 1s infinite;
   -webkit-animation: cursorFlicker 1s infinite;
+  -o-animation: cursorFlicker 1s infinite;
+  -moz-animation: cursorFlicker 1s infinite;
+}
+.indexDemo .flickerCursor:after {
+  content: "|";
 }
 
 .indexApplication {

@@ -33,7 +33,7 @@
 			</div>
 		</div>
 		<div class="indexBanner">
-			<div class="logo">
+			<div class="banerContent">
 				<h4>移动应用的支付模块</h4>
 				<small>present by pingplusplus</small>
 			</div>
@@ -97,7 +97,7 @@
 	"pending_webhooks": 2,
 	"created": 1349654313,
 	"data": {...}
-}</code>//See? It is that easy. <a href="#">LEARN OUR DOCUMENT</a><span class="flickerCursor">|</span>
+}</code>//See? It is that easy. <a href="#">LEARN OUR DOCUMENT</a><span class="flickerCursor"></span>
 			</pre>
 		</div>
 		<div class="indexApplication wrapper">
@@ -142,6 +142,11 @@
 				var indexBannerHeight = $(window).height(); 
 				$('.indexBanner').css('height',indexBannerHeight);
 				
+				$('.nav_btn').click(function(){
+					console.log("te");
+					$('.nav_menu').slideToggle();
+					$('.nav').toggleClass('open');
+				});
 			});
 		</script>
 	</body>
